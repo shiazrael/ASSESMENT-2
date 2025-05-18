@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Opposite Cursor Movement</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Hover Over Me!</h1>
+        <p>This content will move opposite to your cursor.</p>
+    </div>
+    <script>const container = document.querySelector('.container');
+
+container.addEventListener('mousemove', (e) => {
+    const { clientX, clientY } = e; // Get mouse position
+    const { offsetWidth, offsetHeight } = container; // Get container dimensions
+
+    // Calculate the center of the container
+    const centerX = offsetWidth / 2;
+    const centerY = offsetHeight / 2;
+
+    // Calculate the movement based on mouse position
+    const moveX = (clientX - centerX) / 5; // Adjust the divisor for sensitivity
+    const moveY = (clientY - centerY) / 5; // Adjust the divisor for sensitivity
+
+    // Apply the transformation to move the container
+    container.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+});
+</script>
+    <style>body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282c34;
+    color: white;
+}
+
+.container {
+    position: relative; /* Position relative for absolute positioning of child elements */
+    width: 300px;
+    height: 200px;
+    overflow: hidden; /* Hide overflow */
+    text-align: center;
+    transition: transform 0.5s; /* Smooth transition for movement */
+}
+</style>
+</body>
+</html>
